@@ -1,0 +1,9 @@
+{
+  "raw_ingredient_rows": 27225,
+  "unique_dishes": 4768,
+  "processed_dish_rows": 4768,
+  "unique_named_ingredients": 209,
+  "mean_ingredients_per_dish": 5.709941275167785,
+  "median_ingredients_per_dish": 3.0,
+  "explanation": "The 27,225 ingredient-level rows are grouped by dish_id. Each group becomes one dish-level sample, so the modeling table contains 4,768 rows\u2014one for each unique dish."
+}

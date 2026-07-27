@@ -1,0 +1,535 @@
+You are a senior NLP engineer, machine-learning researcher, data scientist, Python software architect, and Streamlit developer. Your task is to build a complete, academically defensible, reproducible, and fully functional NLP project named **NutriNLP**.
+
+Do not provide only a plan, sample code, partial implementation, or project skeleton. Inspect the attached files, create the complete project, run the code, fix errors, train the models using the entire valid dataset, evaluate the results, test the application, and provide a ready-to-run final project.
+
+# 1. Authoritative Project Inputs
+
+Use these two attached files as the authoritative project sources:
+
+1. The attached **NutriNLP project proposal**
+2. The attached **CSV dataset**
+
+The expected CSV contains:
+
+* 27,225 ingredient-level data rows
+* 8 columns:
+
+  * `dish_id`
+  * `ingr_id`
+  * `ingr_name`
+  * `grams`
+  * `calories`
+  * `fat`
+  * `carb`
+  * `protein`
+
+The CSV is an ingredient-level dataset, meaning that multiple rows belonging to the same `dish_id` represent the ingredients of one complete dish.
+
+First inspect the actual files and verify the row count, columns, data types, missing values, duplicate rows, invalid values, and units. The actual uploaded CSV is the source of truth. If its structure differs from the expected structure, report the exact difference. Do not replace the uploaded dataset with another dataset, generate synthetic results, or use only a sample for the final training.
+
+Use every valid row of the uploaded CSV. If any row must be removed because it is unusable, clearly document the number of excluded rows and the precise reason for exclusion.
+
+# 2. Main Project Objective
+
+Build an NLP-based food analysis system in which a user can enter an ordinary English food description, for example:
+
+“Chicken breast with rice and broccoli”
+
+The system must:
+
+1. Process the natural-language food description.
+2. Predict whether the dish belongs to the:
+
+   * Low Calorie
+   * Medium Calorie
+   * High Calorie
+     category.
+3. Show an estimated nutrition summary containing:
+
+   * Calories in kcal
+   * Protein in grams
+   * Carbohydrates in grams
+   * Fat in grams
+4. Identify relevant ingredients from the description.
+5. Suggest healthier ingredient alternatives where appropriate.
+6. Provide general dietary suggestions based on the ingredients and estimated nutrition profile.
+7. Display model-comparison results and explain which classification model performed best.
+
+The primary machine-learning task is **multiclass calorie-category classification**, not exact calorie regression. Exact or estimated numerical nutrition values must be produced by a separate nutrition-estimation component and must not be falsely presented as direct outputs of the calorie classifier.
+
+# 3. Dataset Preparation
+
+Convert the ingredient-level CSV into a dish-level dataset.
+
+For every unique `dish_id`:
+
+* Combine all corresponding `ingr_name` values into one natural-language dish description named `dish_text`.
+* Sum `grams` to produce `total_grams`.
+* Sum `calories` to produce `total_calories`.
+* Sum `fat` to produce `total_fat`.
+* Sum `carb` to produce `total_carb`.
+* Sum `protein` to produce `total_protein`.
+* Preserve `dish_id` as the unique dish identifier.
+
+Validate that there is exactly one processed record per unique `dish_id`.
+
+Do not use `calories`, `fat`, `carb`, `protein`, `grams`, `dish_id`, or `ingr_id` as NLP classification input features. The classification models must learn from ingredient-name text only, because real users may enter descriptions without numerical nutrition information.
+
+Do not automatically remove legitimate high-calorie dishes as outliers. Detect and report unusual values, but remove a record only when it is demonstrably invalid, such as a non-numeric or impossible negative nutrition value. Do not blindly delete repeated ingredient rows unless they are confirmed exact duplicate records.
+
+Save the processed dish-level dataset as:
+
+`data/processed/dish_level_dataset.csv`
+
+Produce an EDA report containing:
+
+* Raw ingredient-row count
+* Number of unique dishes
+* Missing-value report
+* Duplicate report
+* Descriptive statistics
+* Total calorie distribution
+* Macronutrient distributions
+* Most frequent ingredients
+* Number of ingredients per dish
+* Correlation heatmap for dish-level nutrition values
+* Final calorie-class distribution
+* Explanation of how 27,225 ingredient rows become a smaller number of dish-level samples
+
+Save all tables and figures under `reports/`.
+
+# 4. Calorie-Class Label Creation
+
+If the attached proposal specifies exact thresholds for Low, Medium, and High Calorie classes, use those thresholds exactly.
+
+If the proposal does not define the thresholds, use this leakage-safe procedure:
+
+1. Aggregate the dataset at dish level.
+2. Create a fixed 80% development/training partition and a 20% final test partition using `random_state=42`.
+3. Calculate the 33.33rd and 66.67th percentiles of `total_calories` using only the training partition.
+4. Define:
+
+   * Low Calorie: value at or below the first threshold
+   * Medium Calorie: value above the first threshold and at or below the second threshold
+   * High Calorie: value above the second threshold
+5. Apply the same saved thresholds to both training and test data.
+6. Store the thresholds in a configuration or metadata JSON file.
+7. Display the exact thresholds in the README, report, and application.
+
+Never calculate the class thresholds independently on the test set.
+
+# 5. NLP Preprocessing
+
+Implement a reusable NLP preprocessing pipeline containing:
+
+* Conversion to lowercase
+* Unicode and whitespace normalization
+* Removal of unnecessary punctuation and special characters
+* Tokenization
+* Stop-word removal
+* Lemmatization
+* Safe handling of empty or invalid text
+* TF-IDF vectorization
+* Unigrams and bigrams
+* Reasonable `min_df`, `max_df`, and `max_features` settings selected through training-only experimentation
+
+Use NLTK, spaCy, or another suitable local Python NLP library. Include all setup and resource-download instructions in the README.
+
+The exact same fitted preprocessing pipeline must be reused during inference. Fit TF-IDF only on training data. Do not fit it on the full dataset before splitting.
+
+# 6. Required Classification Models
+
+Train and compare exactly these eight machine-learning classification models:
+
+1. Logistic Regression
+2. Multinomial Naive Bayes
+3. Decision Tree
+4. Random Forest
+5. Support Vector Machine
+6. K-Nearest Neighbors
+7. Gradient Boosting
+8. XGBoost
+
+Do not silently omit or replace any model.
+
+Use the same dish-level data partitions and the same base text-processing principles for all eight models. Implement each model as a complete scikit-learn-compatible pipeline.
+
+Some algorithms may require model-specific compatibility processing. For example, Gradient Boosting may require dense, lower-dimensional features. In that case, use a leakage-safe step such as `TruncatedSVD` inside that model’s pipeline and document it clearly. Do not apply SVD before splitting or outside cross-validation.
+
+Use reasonable, computationally manageable hyperparameter searches with `GridSearchCV` or `RandomizedSearchCV`. Use:
+
+* `random_state=42` wherever supported
+* Five-fold `StratifiedKFold` cross-validation
+* Training-only hyperparameter tuning
+* Class weights or training-only imbalance handling when justified
+* No oversampling or transformation of the final test set
+
+Provide both `quick` and `full` training modes if helpful. Quick mode may be used only for debugging. All final reported results must come from the complete valid dataset and full training mode.
+
+# 7. Fair Model Evaluation
+
+Evaluate and compare all eight models using:
+
+* Accuracy
+* Macro Precision
+* Weighted Precision
+* Macro Recall
+* Weighted Recall
+* Macro F1-score
+* Weighted F1-score
+* Five-fold cross-validation mean and standard deviation
+* Per-class classification report
+* Confusion matrix
+* Training time
+* Prediction time
+
+Use Macro F1-score as the primary model-selection metric because all three calorie classes must receive appropriate importance. Still report Accuracy prominently because it is a required project metric.
+
+Use five-fold cross-validation on the training partition for tuning and model ranking. After all hyperparameters are frozen, evaluate all eight final pipelines on the same untouched test partition. Do not tune any model after seeing test results.
+
+Generate and save:
+
+* `reports/model_comparison.csv`
+* A clearly formatted model-ranking table
+* Accuracy comparison chart
+* Macro F1 comparison chart
+* Cross-validation comparison chart
+* One confusion-matrix image for each model
+* Classification reports for all models
+* A short evidence-based explanation of why the selected model is appropriate
+
+Do not invent, estimate, or pre-write accuracy values. Every metric shown in the report and interface must be generated by actually running the trained models.
+
+Save the selected classification pipeline as:
+
+`models/best_calorie_classifier.joblib`
+
+Also save metadata containing:
+
+* Selected model name
+* Dataset row counts
+* Number of unique dishes
+* Class thresholds
+* Feature settings
+* Training date
+* Random seed
+* Library versions
+* Final evaluation metrics
+
+# 8. Separate Nutrition-Estimation Component
+
+A Low/Medium/High classifier cannot directly produce exact calories or macronutrients. Therefore, create a separate text-based nutrition-estimation pipeline.
+
+Train a multi-output regression solution, such as TF-IDF with a properly regularized Ridge-based multi-output regressor, to estimate:
+
+* `total_calories`
+* `total_protein`
+* `total_carb`
+* `total_fat`
+
+Use ingredient-name text only as input, and use the same leakage-safe train/test principle.
+
+Evaluate this component separately using, for each nutrient:
+
+* MAE
+* RMSE
+* R² score
+
+Save the model as:
+
+`models/nutrition_estimator.joblib`
+
+Never present these numerical values as exact laboratory measurements. In the interface, label them clearly as **estimated values**. Where possible, display an uncertainty indicator based on test MAE. Clip impossible negative predictions to zero only at the presentation layer and document this behavior.
+
+If the nutrition estimator performs poorly, report that honestly and show broad estimated ranges or class-level statistics instead of misleadingly precise numbers.
+
+# 9. Healthy Alternative and Dietary Recommendation Engine
+
+Implement a transparent, rule-based recommendation component. Store its knowledge in an editable local file such as:
+
+`config/ingredient_substitutions.json`
+
+It should:
+
+* Detect relevant ingredients from user text.
+* Recommend healthier preparation methods or ingredient substitutions when a known rule is available.
+* Provide suggestions related to high calorie, high fat, high carbohydrate, or low protein patterns.
+* Avoid irrelevant suggestions when the triggering ingredient is absent.
+* Clearly distinguish model predictions from rule-based recommendations.
+* Avoid medical diagnosis, treatment claims, or guaranteed health outcomes.
+* Include a short statement explaining that results are educational estimates and not professional medical or dietetic advice.
+
+The CSV does not contain verified ingredient-replacement labels. Therefore, do not falsely claim that the substitution recommendations were learned from the dataset.
+
+# 10. Streamlit Web Application
+
+Create a clean, responsive, nutrition-themed Streamlit interface using a modern white-and-green design.
+
+The application should contain:
+
+## Prediction Section
+
+* A text area for entering a food description
+* Example food descriptions
+* An “Analyze Meal” button
+* Input validation for blank or extremely short descriptions
+* Predicted Low/Medium/High Calorie category
+* Model confidence only if valid probability estimates or calibrated scores are available
+* Estimated calories, protein, carbohydrates, and fat
+* Clear units: kcal and grams
+* Healthier ingredient alternatives
+* General dietary suggestions
+* A warning when the input contains mostly unknown vocabulary or confidence is low
+
+## Model Performance Section
+
+* Actual comparison table for all eight models
+* Accuracy and F1-score charts
+* Best-model summary
+* Confusion matrix
+* Cross-validation results
+* No hard-coded or placeholder metrics
+
+## Dataset Insights Section
+
+* Dataset summary
+* Dish and ingredient counts
+* Nutrition distributions
+* Class distribution
+* Top ingredients
+
+## About/Methodology Section
+
+* Project objective
+* NLP preprocessing steps
+* TF-IDF explanation
+* Eight-model comparison methodology
+* Difference between classification and numerical nutrition estimation
+* Limitations and educational-use disclaimer
+
+The application must load saved artifacts with caching and must not retrain models every time the page reloads. If trained artifacts are missing, show the exact training command instead of crashing.
+
+# 11. Required Project Structure
+
+Create an organized project similar to:
+
+NutriNLP/
+
+* `app.py`
+* `run_pipeline.py`
+* `README.md`
+* `requirements.txt`
+* `.gitignore`
+* `config/`
+
+  * `config.yaml`
+  * `ingredient_substitutions.json`
+* `data/`
+
+  * `raw/`
+  * `processed/dish_level_dataset.csv`
+* `src/`
+
+  * `__init__.py`
+  * `data_validation.py`
+  * `data_preparation.py`
+  * `text_preprocessing.py`
+  * `train_classifiers.py`
+  * `train_nutrition_estimator.py`
+  * `evaluation.py`
+  * `recommendation_engine.py`
+  * `inference.py`
+  * `utils.py`
+* `models/`
+
+  * `best_calorie_classifier.joblib`
+  * `nutrition_estimator.joblib`
+  * `model_metadata.json`
+* `reports/`
+
+  * `model_comparison.csv`
+  * `nutrition_regression_metrics.csv`
+  * `final_report.md`
+  * `figures/`
+  * `confusion_matrices/`
+  * `classification_reports/`
+* `notebooks/`
+
+  * `NutriNLP_Analysis.ipynb`
+* `tests/`
+
+  * Dataset validation tests
+  * Aggregation tests
+  * Data-leakage tests
+  * Text-preprocessing tests
+  * Model-inference tests
+  * Recommendation-engine tests
+
+You may improve this structure where necessary, but do not omit any required functional component.
+
+# 12. Engineering and Reproducibility Requirements
+
+Use Python 3.11-compatible packages, including appropriate versions of:
+
+* pandas
+* NumPy
+* SciPy
+* scikit-learn
+* NLTK or spaCy
+* XGBoost
+* joblib
+* matplotlib
+* seaborn
+* Streamlit
+* pytest
+* PyYAML
+
+Requirements:
+
+* Use `pathlib` and relative paths instead of hard-coded computer-specific paths.
+* Use functions and reusable classes rather than one long script.
+* Include type hints, docstrings, and clear comments.
+* Handle errors gracefully.
+* Use reproducible random seeds.
+* Do not require a paid API or external LLM service for core functionality.
+* Do not expose the final test set during training or tuning.
+* Ensure no `dish_id` appears in both training and test data.
+* Prevent all preprocessing and feature-extraction leakage.
+* Keep scripts as the source of truth; the notebook should reuse project functions.
+* Record actual package versions and model metadata.
+* Ensure the project works on Windows, macOS, and Linux.
+
+# 13. Testing and Verification
+
+Create meaningful automated tests using `pytest`.
+
+At minimum, test:
+
+* Required CSV columns
+* Numeric-column validation
+* Dish-level aggregation with a small controlled example
+* Correct calorie-label assignment
+* Train/test `dish_id` separation
+* Deterministic preprocessing
+* Empty-input handling
+* Saved-model loading
+* End-to-end prediction output structure
+* Recommendation rule matching
+
+Run:
+
+* Dataset preparation
+* Full model training
+* Nutrition-estimator training
+* Report generation
+* `pytest`
+* A Streamlit application smoke test
+
+Fix all errors found during execution. Do not claim that a command passed unless it was actually executed successfully.
+
+# 14. README and Academic Documentation
+
+Create a professional README containing:
+
+* Project title and overview
+* Research problem
+* Project objectives
+* Dataset description and data dictionary
+* Raw and processed dataset sizes
+* Complete workflow
+* Calorie-class threshold methodology
+* NLP preprocessing explanation
+* Explanation of all eight models
+* Evaluation methodology
+* Actual comparison results
+* Selected model and justification
+* Nutrition-estimator evaluation
+* Application features
+* Project folder structure
+* Installation instructions
+* NLTK/spaCy resource setup
+* Training commands
+* Testing commands
+* Streamlit run command
+* Example input and output
+* Known limitations
+* Ethical and health-information disclaimer
+* Future improvements
+
+Also create `reports/final_report.md` as an academic project report with:
+
+* Abstract
+* Introduction
+* Problem statement
+* Objectives
+* Related conceptual background
+* Dataset methodology
+* Data preprocessing
+* NLP methodology
+* Model methodology
+* Experimental setup
+* Results
+* Model comparison
+* Discussion
+* Limitations
+* Conclusion
+* Future work
+
+Use only actual measured results. Do not fabricate citations or metric values.
+
+# 15. Required Commands
+
+The completed project should support commands equivalent to:
+
+`python -m venv .venv`
+
+`pip install -r requirements.txt`
+
+`python run_pipeline.py --input "path/to/uploaded_dataset.csv" --mode full`
+
+`pytest -q`
+
+`streamlit run app.py`
+
+Make sure the exact commands are documented and tested in the actual project environment.
+
+# 16. Final Acceptance Criteria
+
+The project is complete only when all of the following are true:
+
+* The attached proposal has been reviewed and mapped to implementation.
+* The complete valid CSV dataset has been used.
+* All raw rows are accounted for.
+* The data is correctly aggregated by `dish_id`.
+* Low, Medium, and High Calorie labels are reproducible.
+* NLP preprocessing and TF-IDF are implemented without leakage.
+* All eight required classification models are trained and compared.
+* Accuracy, Precision, Recall, F1-score, cross-validation, and confusion matrices are available.
+* Metrics come from actual executions, not placeholders.
+* The best classification pipeline is saved and reloadable.
+* Numerical nutrition estimation is handled by a separate evaluated component.
+* Healthier alternatives and dietary suggestions work transparently.
+* The Streamlit application runs successfully.
+* Automated tests pass.
+* The README and academic report are complete.
+* A final ready-to-run project folder is produced.
+
+# 17. Working Instructions
+
+Begin by reading the proposal and auditing the CSV. Briefly report your understanding and the verified dataset structure. Then immediately proceed with implementation.
+
+Do not stop after planning. Do not repeatedly ask for confirmation when the necessary information is available in the proposal and dataset. Make reasonable, academically defensible implementation decisions and document them.
+
+If a genuinely required column or file is missing, state the exact blocker and request only the missing item. If package installation or full training is impossible in the environment, report the exact technical limitation. Never replace actual results with invented results.
+
+At completion, provide:
+
+1. The final project file tree
+2. Verified dataset statistics
+3. Actual comparison table for all eight models
+4. The selected model and evidence-based reason
+5. Nutrition-estimator metrics
+6. Test results
+7. Exact setup, training, and application commands
+8. A concise list of limitations
+9. The complete ready-to-run NutriNLP project

@@ -1,0 +1,17 @@
+{
+  "goat meat": {
+    "proxy": "beef",
+    "display_name": "goat meat",
+    "reason": "The uploaded dataset contains goat cheese but no goat-meat ingredient rows. Beef is used only as a transparent red-meat proxy for text classification and approximate nutrition estimation."
+  },
+  "mutton": {
+    "proxy": "beef",
+    "display_name": "mutton",
+    "reason": "The uploaded dataset has no mutton ingredient rows. Beef is used only as a transparent red-meat proxy for text classification and approximate nutrition estimation."
+  },
+  "lamb": {
+    "proxy": "beef",
+    "display_name": "lamb",
+    "reason": "The uploaded dataset has no lamb ingredient rows. Beef is used only as a transparent red-meat proxy for text classification and approximate nutrition estimation."
+  }
+}

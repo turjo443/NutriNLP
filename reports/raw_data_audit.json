@@ -1,0 +1,82 @@
+{
+  "input_path": "/mnt/data/NutriNLP/data/raw/dish_ingredients.csv",
+  "raw_row_count": 27225,
+  "valid_row_count": 27225,
+  "excluded_row_count": 0,
+  "original_columns": [
+    "dish_id",
+    "ingr_id",
+    "ingr_name",
+    "grams",
+    "calories",
+    "fat",
+    "carb",
+    "protein"
+  ],
+  "expected_columns": [
+    "dish_id",
+    "ingr_id",
+    "ingr_name",
+    "grams",
+    "calories",
+    "fat",
+    "carb",
+    "protein"
+  ],
+  "missing_columns": [],
+  "extra_columns": [],
+  "dtypes_after_conversion": {
+    "dish_id": "object",
+    "ingr_id": "object",
+    "ingr_name": "string",
+    "grams": "float64",
+    "calories": "float64",
+    "fat": "float64",
+    "carb": "float64",
+    "protein": "float64"
+  },
+  "missing_values_before_cleaning": {
+    "dish_id": 0,
+    "ingr_id": 0,
+    "ingr_name": 1,
+    "grams": 0,
+    "calories": 0,
+    "fat": 0,
+    "carb": 0,
+    "protein": 0
+  },
+  "exact_duplicate_rows": 0,
+  "duplicate_dish_ingredient_pairs": 0,
+  "numeric_non_numeric_counts": {
+    "grams": 0,
+    "calories": 0,
+    "fat": 0,
+    "carb": 0,
+    "protein": 0
+  },
+  "numeric_missing_counts": {
+    "grams": 0,
+    "calories": 0,
+    "fat": 0,
+    "carb": 0,
+    "protein": 0
+  },
+  "negative_value_counts": {
+    "grams": 0,
+    "calories": 0,
+    "fat": 0,
+    "carb": 0,
+    "protein": 0
+  },
+  "missing_ingredient_name_rows_retained": 1,
+  "unique_dishes": 4768,
+  "unique_ingredient_names": 209,
+  "units": {
+    "grams": "g",
+    "calories": "kcal",
+    "fat": "g",
+    "carb": "g",
+    "protein": "g"
+  },
+  "exclusion_reasons": {}
+}

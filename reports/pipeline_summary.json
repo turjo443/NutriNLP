@@ -1,0 +1,7 @@
+{
+  "status": "success",
+  "best_model": "XGBoost",
+  "raw_rows": 27225,
+  "unique_dishes": 4768,
+  "mode": "full"
+}

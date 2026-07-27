@@ -1,0 +1,5 @@
+params,mean_test_f1_macro,std_test_f1_macro,mean_test_accuracy,std_test_accuracy,mean_fit_time
+"{""tfidf__max_df"": 1.0, ""tfidf__max_features"": 5000, ""tfidf__min_df"": 1, ""tfidf__ngram_range"": [1, 2]}",0.6855728411671154,0.011720339975347256,0.6924452104037453,0.010933559921005684,0.06558666229248047
+"{""tfidf__max_df"": 1.0, ""tfidf__max_features"": 5000, ""tfidf__min_df"": 2, ""tfidf__ngram_range"": [1, 2]}",0.6845151522436141,0.013120358162343432,0.6919192440394493,0.011809059258185328,0.08641853332519531
+"{""tfidf__max_df"": 0.95, ""tfidf__max_features"": 3000, ""tfidf__min_df"": 2, ""tfidf__ngram_range"": [1, 2]}",0.6845151522436141,0.013120358162343432,0.6919192440394493,0.011809059258185328,0.06440057754516601
+"{""tfidf__max_df"": 0.95, ""tfidf__max_features"": 3000, ""tfidf__min_df"": 1, ""tfidf__ngram_range"": [1, 2]}",0.6832259190383321,0.013227937524145519,0.6908710952415352,0.011803000343466962,0.06427202224731446

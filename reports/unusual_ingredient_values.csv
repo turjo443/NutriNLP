@@ -1,0 +1,51 @@
+flagged_field,flag_reason,dish_id,ingr_id,ingr_name,grams,calories,fat,carb,protein
+grams,top 10 observed grams; retained because value is non-negative and numeric,dish_1551567573,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+grams,top 10 observed grams; retained because value is non-negative and numeric,dish_1551567604,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+grams,top 10 observed grams; retained because value is non-negative and numeric,dish_1551389588,ingr_0000000057,lemon,7974.0,2312.46,23.922,717.66,87.714
+grams,top 10 observed grams; retained because value is non-negative and numeric,dish_1551389551,ingr_0000000057,lemon,7974.0,2312.46,23.922,717.66,87.714
+grams,top 10 observed grams; retained because value is non-negative and numeric,dish_1551567508,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+grams,top 10 observed grams; retained because value is non-negative and numeric,dish_1551389458,ingr_0000000057,lemon,7974.0,2312.46,23.922,717.66,87.714
+grams,top 10 observed grams; retained because value is non-negative and numeric,dish_1551381990,ingr_0000000014,asparagus,3324.0,678.096,3.324,129.636,73.128
+grams,top 10 observed grams; retained because value is non-negative and numeric,dish_1551382149,ingr_0000000014,asparagus,3324.0,678.096,3.324,129.636,73.128
+grams,top 10 observed grams; retained because value is non-negative and numeric,dish_1551382179,ingr_0000000014,asparagus,3324.0,678.096,3.324,129.636,73.128
+grams,top 10 observed grams; retained because value is non-negative and numeric,dish_1560974769,ingr_0000000026,white rice,2991.0,3888.3,8.973,837.48,80.757
+calories,top 10 observed calories; retained because value is non-negative and numeric,dish_1551567573,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+calories,top 10 observed calories; retained because value is non-negative and numeric,dish_1551567604,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+calories,top 10 observed calories; retained because value is non-negative and numeric,dish_1551567508,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+calories,top 10 observed calories; retained because value is non-negative and numeric,dish_1560974769,ingr_0000000026,white rice,2991.0,3888.3,8.973,837.48,80.757
+calories,top 10 observed calories; retained because value is non-negative and numeric,dish_1551389588,ingr_0000000057,lemon,7974.0,2312.46,23.922,717.66,87.714
+calories,top 10 observed calories; retained because value is non-negative and numeric,dish_1551389551,ingr_0000000057,lemon,7974.0,2312.46,23.922,717.66,87.714
+calories,top 10 observed calories; retained because value is non-negative and numeric,dish_1551389458,ingr_0000000057,lemon,7974.0,2312.46,23.922,717.66,87.714
+calories,top 10 observed calories; retained because value is non-negative and numeric,dish_1562173111,ingr_0000000543,chia seeds,163.0,792.18,50.53,68.46,27.71
+calories,top 10 observed calories; retained because value is non-negative and numeric,dish_1558721757,ingr_0000000077,almonds,133.0,768.873,65.835,30.191,29.792
+calories,top 10 observed calories; retained because value is non-negative and numeric,dish_1558720236,ingr_0000000077,almonds,133.0,768.873,65.835,30.191,29.792
+fat,top 10 observed fat; retained because value is non-negative and numeric,dish_1551567573,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+fat,top 10 observed fat; retained because value is non-negative and numeric,dish_1551567604,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+fat,top 10 observed fat; retained because value is non-negative and numeric,dish_1551567508,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+fat,top 10 observed fat; retained because value is non-negative and numeric,dish_1558721757,ingr_0000000077,almonds,133.0,768.873,65.835,30.191,29.792
+fat,top 10 observed fat; retained because value is non-negative and numeric,dish_1558720236,ingr_0000000077,almonds,133.0,768.873,65.835,30.191,29.792
+fat,top 10 observed fat; retained because value is non-negative and numeric,dish_1558719994,ingr_0000000077,almonds,133.0,768.873,65.835,30.191,29.792
+fat,top 10 observed fat; retained because value is non-negative and numeric,dish_1558721827,ingr_0000000077,almonds,133.0,768.873,65.835,30.191,29.792
+fat,top 10 observed fat; retained because value is non-negative and numeric,dish_1558725286,ingr_0000000077,almonds,132.0,763.092,65.34,29.964,29.568
+fat,top 10 observed fat; retained because value is non-negative and numeric,dish_1558725193,ingr_0000000077,almonds,132.0,763.092,65.34,29.964,29.568
+fat,top 10 observed fat; retained because value is non-negative and numeric,dish_1558637393,ingr_0000000077,almonds,128.0,739.968,63.36,29.056,28.672
+carb,top 10 observed carb; retained because value is non-negative and numeric,dish_1560974769,ingr_0000000026,white rice,2991.0,3888.3,8.973,837.48,80.757
+carb,top 10 observed carb; retained because value is non-negative and numeric,dish_1551389588,ingr_0000000057,lemon,7974.0,2312.46,23.922,717.66,87.714
+carb,top 10 observed carb; retained because value is non-negative and numeric,dish_1551389551,ingr_0000000057,lemon,7974.0,2312.46,23.922,717.66,87.714
+carb,top 10 observed carb; retained because value is non-negative and numeric,dish_1551389458,ingr_0000000057,lemon,7974.0,2312.46,23.922,717.66,87.714
+carb,top 10 observed carb; retained because value is non-negative and numeric,dish_1551567573,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+carb,top 10 observed carb; retained because value is non-negative and numeric,dish_1551567604,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+carb,top 10 observed carb; retained because value is non-negative and numeric,dish_1551567508,ingr_0000000012,olives,7974.0,9170.1,853.218,502.362,63.792
+carb,top 10 observed carb; retained because value is non-negative and numeric,dish_1551381990,ingr_0000000014,asparagus,3324.0,678.096,3.324,129.636,73.128
+carb,top 10 observed carb; retained because value is non-negative and numeric,dish_1551382149,ingr_0000000014,asparagus,3324.0,678.096,3.324,129.636,73.128
+carb,top 10 observed carb; retained because value is non-negative and numeric,dish_1551382179,ingr_0000000014,asparagus,3324.0,678.096,3.324,129.636,73.128
+protein,top 10 observed protein; retained because value is non-negative and numeric,dish_1563304925,ingr_0000000028,chicken,381.502258,629.4787257,13.734081288,0.0,118.26569998
+protein,top 10 observed protein; retained because value is non-negative and numeric,dish_1563304958,ingr_0000000028,chicken,381.502258,629.4787257,13.734081288,0.0,118.26569998
+protein,top 10 observed protein; retained because value is non-negative and numeric,dish_1563304881,ingr_0000000028,chicken,381.502258,629.4787257,13.734081288,0.0,118.26569998
+protein,top 10 observed protein; retained because value is non-negative and numeric,dish_1563305047,ingr_0000000028,chicken,381.502258,629.4787257,13.734081288,0.0,118.26569998
+protein,top 10 observed protein; retained because value is non-negative and numeric,dish_1563305005,ingr_0000000028,chicken,381.502258,629.4787257,13.734081288,0.0,118.26569998
+protein,top 10 observed protein; retained because value is non-negative and numeric,dish_1563305083,ingr_0000000028,chicken,381.502258,629.4787257,13.734081288,0.0,118.26569998
+protein,top 10 observed protein; retained because value is non-negative and numeric,dish_1565203094,ingr_0000000028,chicken,341.431946,563.3627109,12.291550056,0.0,105.84390326
+protein,top 10 observed protein; retained because value is non-negative and numeric,dish_1565203015,ingr_0000000028,chicken,341.431946,563.3627109,12.291550056,0.0,105.84390326
+protein,top 10 observed protein; retained because value is non-negative and numeric,dish_1568401018,ingr_0000000028,chicken,334.0,551.1,12.024,0.0,103.54
+protein,top 10 observed protein; retained because value is non-negative and numeric,dish_1568401064,ingr_0000000028,chicken,334.0,551.1,12.024,0.0,103.54

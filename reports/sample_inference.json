@@ -1,0 +1,63 @@
+{
+  "input_text": "Chicken breast with white rice and broccoli",
+  "normalized_text": "chicken breast white rice broccoli",
+  "calorie_class_id": 2,
+  "calorie_class": "High Calorie",
+  "confidence": 0.6284552812576294,
+  "estimated_nutrition": {
+    "total_calories": 198.84373819552144,
+    "total_protein": 25.690547635383506,
+    "total_carb": 20.208367522855774,
+    "total_fat": 0.7650404175917843
+  },
+  "uncertainty_ranges": {
+    "total_calories": {
+      "low": 94.31204720536893,
+      "high": 303.37542918567397,
+      "mae": 104.53169099015251
+    },
+    "total_protein": {
+      "low": 18.438479457231107,
+      "high": 32.9426158135359,
+      "mae": 7.252068178152398
+    },
+    "total_carb": {
+      "low": 11.519053961771826,
+      "high": 28.897681083939723,
+      "mae": 8.689313561083948
+    },
+    "total_fat": {
+      "low": 0.0,
+      "high": 7.086995948760915,
+      "mae": 6.321955531169131
+    }
+  },
+  "vocabulary_coverage": 1.0,
+  "known_tokens": [
+    "chicken",
+    "breast",
+    "white",
+    "rice",
+    "broccoli"
+  ],
+  "detected_ingredients": [
+    "chicken breast",
+    "white rice",
+    "broccoli"
+  ],
+  "detected_rule_ingredients": [
+    "white rice"
+  ],
+  "nutrition_estimate_category": "Medium Calorie",
+  "healthier_alternatives": [
+    "For white rice, consider brown rice, quinoa, cauliflower rice. These options can provide more fiber or reduce refined carbohydrate intake."
+  ],
+  "dietary_suggestions": [
+    "Consider a smaller portion, fewer calorie-dense toppings, or adding non-starchy vegetables."
+  ],
+  "warnings": [
+    "Numerical nutrition estimation has low test-set reliability; use the displayed ranges rather than the point values.",
+    "The independent category classifier and numerical nutrition estimator disagree. This is expected in some cases; use the category and wide uncertainty range as separate evidence."
+  ],
+  "disclaimer": "Educational estimates only; not professional medical or dietetic advice."
+}

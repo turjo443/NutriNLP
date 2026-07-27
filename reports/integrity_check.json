@@ -1,0 +1,22 @@
+{
+  "all_required_files_exist": true,
+  "missing_required_files": [],
+  "model_count": 8,
+  "model_names": [
+    "XGBoost",
+    "Random Forest",
+    "K-Nearest Neighbors",
+    "Decision Tree",
+    "Support Vector Machine",
+    "Gradient Boosting",
+    "Logistic Regression",
+    "Multinomial Naive Bayes"
+  ],
+  "confusion_matrix_count": 8,
+  "classification_report_json_count": 8,
+  "processed_rows": 4768,
+  "unique_dishes": 4768,
+  "train_test_overlap": 0,
+  "classifier_reloadable": true,
+  "nutrition_estimator_reloadable": true
+}

@@ -1,0 +1,27 @@
+{
+  "random_state": 42,
+  "test_size": 0.2,
+  "quantiles": [
+    0.3333,
+    0.6667
+  ],
+  "low_threshold_kcal": 87.49237399999998,
+  "high_threshold_kcal": 260.86910846118934,
+  "train_dishes": 3814,
+  "test_dishes": 954,
+  "class_names": {
+    "0": "Low Calorie",
+    "1": "Medium Calorie",
+    "2": "High Calorie"
+  },
+  "train_class_distribution": {
+    "Medium Calorie": 1272,
+    "High Calorie": 1271,
+    "Low Calorie": 1271
+  },
+  "test_class_distribution": {
+    "Medium Calorie": 324,
+    "Low Calorie": 316,
+    "High Calorie": 314
+  }
+}

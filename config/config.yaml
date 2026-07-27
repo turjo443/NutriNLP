@@ -1,0 +1,24 @@
+project:
+  name: NutriNLP
+  random_seed: 42
+  test_size: 0.20
+  class_quantiles: [0.3333, 0.6667]
+  primary_metric: f1_macro
+
+text:
+  ngram_range: [1, 2]
+  min_df: 1
+  max_df: 1.0
+  max_features: 5000
+  sublinear_tf: true
+
+training:
+  cv_folds: 5
+  mode: full
+  n_jobs: 1
+
+paths:
+  raw_data: data/raw/dish_ingredients.csv
+  processed_data: data/processed/dish_level_dataset.csv
+  models_dir: models
+  reports_dir: reports

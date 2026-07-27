@@ -1,0 +1,54 @@
+{
+  "white rice": {
+    "alternatives": ["brown rice", "quinoa", "cauliflower rice"],
+    "reason": "These options can provide more fiber or reduce refined carbohydrate intake."
+  },
+  "butter": {
+    "alternatives": ["a smaller amount of olive oil", "plain yogurt in suitable recipes", "avocado puree in some spreads"],
+    "reason": "Using less saturated fat may improve the overall fat profile."
+  },
+  "cream": {
+    "alternatives": ["low-fat milk", "plain Greek yogurt", "blended cauliflower for savory sauces"],
+    "reason": "These swaps can lower calories and saturated fat while preserving texture."
+  },
+  "mayonnaise": {
+    "alternatives": ["plain Greek yogurt", "mashed avocado", "mustard-based dressing"],
+    "reason": "These alternatives may reduce calories or add protein and unsaturated fat."
+  },
+  "sugar": {
+    "alternatives": ["use a smaller amount", "fresh fruit", "unsweetened applesauce in suitable recipes"],
+    "reason": "Reducing added sugar lowers unnecessary calories."
+  },
+  "fried": {
+    "alternatives": ["baked", "air-fried with minimal oil", "grilled"],
+    "reason": "These preparation methods generally use less added fat."
+  },
+  "french fries": {
+    "alternatives": ["oven-baked potato wedges", "roasted sweet potato", "side salad"],
+    "reason": "These options can reduce added oil or increase vegetable intake."
+  },
+  "bacon": {
+    "alternatives": ["grilled chicken", "turkey strips", "smoked tofu"],
+    "reason": "Lean alternatives may reduce saturated fat and sodium."
+  },
+  "sausage": {
+    "alternatives": ["lean chicken sausage", "beans", "seasoned tofu"],
+    "reason": "Leaner or plant-based proteins can reduce saturated fat."
+  },
+  "white bread": {
+    "alternatives": ["whole-grain bread", "whole-wheat pita", "lettuce wrap"],
+    "reason": "Whole-grain choices generally provide more fiber."
+  },
+  "pasta": {
+    "alternatives": ["whole-wheat pasta", "lentil pasta", "zucchini noodles"],
+    "reason": "These alternatives can add fiber or protein."
+  },
+  "cheese": {
+    "alternatives": ["use a smaller portion", "reduced-fat cheese", "nutritional yeast for flavor"],
+    "reason": "Portion control can reduce calories and saturated fat."
+  },
+  "coconut milk": {
+    "alternatives": ["light coconut milk", "low-fat milk in compatible recipes", "blended vegetables for body"],
+    "reason": "Lighter alternatives can reduce total fat and calories."
+  }
+}
