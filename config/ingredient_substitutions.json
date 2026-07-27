@@ -1,54 +1,256 @@
 {
   "white rice": {
-    "alternatives": ["brown rice", "quinoa", "cauliflower rice"],
-    "reason": "These options can provide more fiber or reduce refined carbohydrate intake."
+    "profile_key": "white rice",
+    "alternatives": ["replace half with cauliflower", "use a smaller rice portion", "add more non-starchy vegetables"],
+    "reason": "Replacing part of the rice with a lower-calorie vegetable can reduce total meal calories.",
+    "calorie_reduction_options": [
+      {
+        "type": "blend",
+        "label": "Replace half of the white rice with the same weight of cauliflower.",
+        "replacement_profile": "cauliflower",
+        "replacement_name": "cauliflower",
+        "replacement_fraction": 0.5
+      },
+      {
+        "type": "portion_reduction",
+        "label": "Reduce the white-rice portion by 25% and add vegetables.",
+        "portion_multiplier": 0.75
+      }
+    ]
   },
   "butter": {
-    "alternatives": ["a smaller amount of olive oil", "plain yogurt in suitable recipes", "avocado puree in some spreads"],
-    "reason": "Using less saturated fat may improve the overall fat profile."
+    "profile_key": "butter",
+    "alternatives": ["use half as much butter", "plain Greek yogurt in suitable recipes", "a light cooking spray where appropriate"],
+    "reason": "Butter is calorie dense, so reducing its amount can meaningfully lower calories.",
+    "calorie_reduction_options": [
+      {
+        "type": "replacement",
+        "label": "In a suitable sauce or spread, replace the butter with the same weight of plain Greek yogurt.",
+        "replacement_profile": "greek yogurt",
+        "replacement_name": "Greek yogurt"
+      },
+      {
+        "type": "portion_reduction",
+        "label": "Use half as much butter.",
+        "portion_multiplier": 0.5
+      }
+    ]
   },
   "cream": {
-    "alternatives": ["low-fat milk", "plain Greek yogurt", "blended cauliflower for savory sauces"],
-    "reason": "These swaps can lower calories and saturated fat while preserving texture."
+    "profile_key": "cream",
+    "alternatives": ["plain Greek yogurt", "milk", "blended cauliflower for savory sauces"],
+    "reason": "Lower-fat dairy or vegetables can reduce calorie density while preserving texture.",
+    "calorie_reduction_options": [
+      {
+        "type": "replacement",
+        "label": "Replace cream with the same weight of plain Greek yogurt where suitable.",
+        "replacement_profile": "greek yogurt",
+        "replacement_name": "Greek yogurt"
+      }
+    ]
   },
   "mayonnaise": {
-    "alternatives": ["plain Greek yogurt", "mashed avocado", "mustard-based dressing"],
-    "reason": "These alternatives may reduce calories or add protein and unsaturated fat."
+    "profile_key": "mayonnaise",
+    "alternatives": ["plain Greek yogurt", "mustard", "salsa"],
+    "reason": "These alternatives can substantially reduce calorie density.",
+    "calorie_reduction_options": [
+      {
+        "type": "replacement",
+        "label": "Replace mayonnaise with the same weight of plain Greek yogurt.",
+        "replacement_profile": "greek yogurt",
+        "replacement_name": "Greek yogurt"
+      }
+    ]
+  },
+  "sour cream": {
+    "profile_key": "sour cream",
+    "alternatives": ["plain Greek yogurt", "salsa"],
+    "reason": "Greek yogurt can provide a creamy texture with fewer calories.",
+    "calorie_reduction_options": [
+      {
+        "type": "replacement",
+        "label": "Replace sour cream with the same weight of plain Greek yogurt.",
+        "replacement_profile": "greek yogurt",
+        "replacement_name": "Greek yogurt"
+      }
+    ]
+  },
+  "cream cheese": {
+    "profile_key": "cream cheese",
+    "alternatives": ["cottage cheese", "plain Greek yogurt", "a smaller portion"],
+    "reason": "A lower-calorie cheese or smaller portion can reduce calories.",
+    "calorie_reduction_options": [
+      {
+        "type": "replacement",
+        "label": "Replace cream cheese with the same weight of cottage cheese.",
+        "replacement_profile": "cottage cheese",
+        "replacement_name": "cottage cheese"
+      }
+    ]
   },
   "sugar": {
-    "alternatives": ["use a smaller amount", "fresh fruit", "unsweetened applesauce in suitable recipes"],
-    "reason": "Reducing added sugar lowers unnecessary calories."
+    "profile_key": "sugar",
+    "alternatives": ["use half as much", "fresh fruit", "unsweetened applesauce in suitable recipes"],
+    "reason": "Reducing added sugar directly lowers calories.",
+    "calorie_reduction_options": [
+      {
+        "type": "portion_reduction",
+        "label": "Use half the amount of added sugar.",
+        "portion_multiplier": 0.5
+      }
+    ]
   },
   "fried": {
     "alternatives": ["baked", "air-fried with minimal oil", "grilled"],
-    "reason": "These preparation methods generally use less added fat."
+    "reason": "These methods generally require less added fat.",
+    "calorie_reduction_options": [
+      {
+        "type": "preparation",
+        "label": "Bake, grill, or air-fry with minimal oil instead of deep-frying.",
+        "basis": "Exact saving depends on how much frying oil the food absorbs; no fixed calorie number is claimed."
+      }
+    ]
   },
   "french fries": {
-    "alternatives": ["oven-baked potato wedges", "roasted sweet potato", "side salad"],
-    "reason": "These options can reduce added oil or increase vegetable intake."
+    "alternatives": ["roasted potatoes", "baked potato wedges", "a side salad"],
+    "reason": "Using less oil or replacing part of the fries with vegetables can reduce calories.",
+    "calorie_reduction_options": [
+      {
+        "type": "preparation",
+        "label": "Use oven-roasted potato wedges with minimal oil, or replace part of the fries with salad.",
+        "basis": "The CSV has no exact french-fries profile, so this recommendation is qualitative."
+      }
+    ]
   },
   "bacon": {
-    "alternatives": ["grilled chicken", "turkey strips", "smoked tofu"],
-    "reason": "Lean alternatives may reduce saturated fat and sodium."
+    "profile_key": "bacon",
+    "alternatives": ["turkey bacon", "grilled chicken", "smoked tofu"],
+    "reason": "A leaner replacement can reduce calorie and fat density.",
+    "calorie_reduction_options": [
+      {
+        "type": "replacement",
+        "label": "Replace bacon with the same weight of turkey bacon.",
+        "replacement_profile": "turkey bacon",
+        "replacement_name": "turkey bacon"
+      }
+    ]
   },
   "sausage": {
-    "alternatives": ["lean chicken sausage", "beans", "seasoned tofu"],
-    "reason": "Leaner or plant-based proteins can reduce saturated fat."
+    "profile_key": "sausage",
+    "alternatives": ["ground turkey", "beans", "seasoned tofu"],
+    "reason": "Leaner or plant-based proteins may reduce calories and saturated fat.",
+    "calorie_reduction_options": [
+      {
+        "type": "replacement",
+        "label": "Replace sausage with the same weight of lean ground turkey.",
+        "replacement_profile": "ground turkey",
+        "replacement_name": "ground turkey"
+      }
+    ]
   },
   "white bread": {
-    "alternatives": ["whole-grain bread", "whole-wheat pita", "lettuce wrap"],
-    "reason": "Whole-grain choices generally provide more fiber."
+    "profile_key": "bread",
+    "alternatives": ["a smaller bread portion", "lettuce wrap", "vegetable side"],
+    "reason": "Portion reduction or a vegetable-based wrap can lower total calories.",
+    "calorie_reduction_options": [
+      {
+        "type": "portion_reduction",
+        "label": "Use 25% less bread and add a vegetable side.",
+        "portion_multiplier": 0.75
+      }
+    ]
   },
   "pasta": {
-    "alternatives": ["whole-wheat pasta", "lentil pasta", "zucchini noodles"],
-    "reason": "These alternatives can add fiber or protein."
+    "profile_key": "pasta",
+    "alternatives": ["zucchini noodles", "half pasta and half zucchini", "a smaller pasta portion"],
+    "reason": "Zucchini has a much lower calorie density than pasta.",
+    "calorie_reduction_options": [
+      {
+        "type": "blend",
+        "label": "Replace half of the pasta with the same weight of zucchini.",
+        "replacement_profile": "zucchini",
+        "replacement_name": "zucchini",
+        "replacement_fraction": 0.5
+      }
+    ]
   },
   "cheese": {
-    "alternatives": ["use a smaller portion", "reduced-fat cheese", "nutritional yeast for flavor"],
-    "reason": "Portion control can reduce calories and saturated fat."
+    "profile_key": "cheese",
+    "alternatives": ["cottage cheese", "use half as much cheese", "nutritional yeast for flavor"],
+    "reason": "A lower-calorie cheese or smaller portion can reduce total calories.",
+    "calorie_reduction_options": [
+      {
+        "type": "replacement",
+        "label": "Replace the cheese with the same weight of cottage cheese where suitable.",
+        "replacement_profile": "cottage cheese",
+        "replacement_name": "cottage cheese"
+      },
+      {
+        "type": "portion_reduction",
+        "label": "Use half as much cheese.",
+        "portion_multiplier": 0.5
+      }
+    ]
   },
   "coconut milk": {
     "alternatives": ["light coconut milk", "low-fat milk in compatible recipes", "blended vegetables for body"],
-    "reason": "Lighter alternatives can reduce total fat and calories."
+    "reason": "Lighter alternatives may reduce total fat and calories.",
+    "calorie_reduction_options": [
+      {
+        "type": "preparation",
+        "label": "Use light coconut milk or replace part of it with a lower-fat liquid.",
+        "basis": "The uploaded CSV has no coconut-milk profile, so no numeric saving is claimed."
+      }
+    ]
+  },
+  "olive oil": {
+    "profile_key": "olive oil",
+    "alternatives": ["use half as much oil", "measure with a teaspoon", "use a non-stick pan"],
+    "reason": "Oil is calorie dense even when it has a favorable fat profile.",
+    "calorie_reduction_options": [
+      {
+        "type": "portion_reduction",
+        "label": "Use half as much olive oil.",
+        "portion_multiplier": 0.5
+      }
+    ]
+  },
+  "vegetable oil": {
+    "profile_key": "vegetable oil",
+    "alternatives": ["use half as much oil", "measure with a teaspoon", "bake or grill"],
+    "reason": "Reducing added oil can substantially reduce total calories.",
+    "calorie_reduction_options": [
+      {
+        "type": "portion_reduction",
+        "label": "Use half as much vegetable oil.",
+        "portion_multiplier": 0.5
+      }
+    ]
+  },
+  "pesto": {
+    "profile_key": "pesto",
+    "alternatives": ["salsa", "tomato-based sauce", "a smaller amount of pesto"],
+    "reason": "Tomato-based sauces are typically much less calorie dense.",
+    "calorie_reduction_options": [
+      {
+        "type": "replacement",
+        "label": "Replace pesto with the same weight of salsa.",
+        "replacement_profile": "salsa",
+        "replacement_name": "salsa"
+      }
+    ]
+  },
+  "granola": {
+    "profile_key": "granola",
+    "alternatives": ["oatmeal", "fruit", "a smaller granola portion"],
+    "reason": "Oatmeal can be substantially less calorie dense than granola.",
+    "calorie_reduction_options": [
+      {
+        "type": "replacement",
+        "label": "Replace granola with the same weight of oatmeal.",
+        "replacement_profile": "oatmeal",
+        "replacement_name": "oatmeal"
+      }
+    ]
   }
 }

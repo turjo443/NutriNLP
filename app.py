@@ -386,6 +386,66 @@ with prediction_tab:
                 for item in result["dietary_suggestions"]:
                     st.write(f"• {item}")
 
+            st.markdown("### Calorie-reduction plan")
+            reduction_plan = result.get("calorie_reduction_plan", [])
+
+            if reduction_plan:
+                plan_rows = []
+                for item in reduction_plan:
+                    saving = item.get("estimated_saving_kcal")
+                    plan_rows.append(
+                        {
+                            "Detected item": item.get("trigger", ""),
+                            "Recommended change": item.get("suggestion", ""),
+                            "Estimated kcal saved": (
+                                f"{saving:.1f}" if saving is not None else "Add quantity"
+                            ),
+                            "Calculation basis": item.get("basis", ""),
+                        }
+                    )
+
+                st.dataframe(
+                    pd.DataFrame(plan_rows),
+                    use_container_width=True,
+                    hide_index=True,
+                )
+
+                total_saving = result.get("estimated_total_calorie_saving")
+                revised_calories = result.get("estimated_revised_calories")
+                revised_category = result.get("estimated_revised_category")
+
+                if total_saving is not None and revised_calories is not None:
+                    current_col, saving_col, revised_col = st.columns(3)
+                    current_col.metric(
+                        "Current estimated calories",
+                        f"{estimated['total_calories']:.1f} kcal",
+                    )
+                    saving_col.metric(
+                        "Potential calorie reduction",
+                        f"{total_saving:.1f} kcal",
+                    )
+                    revised_col.metric(
+                        "Estimated calories after changes",
+                        f"{revised_calories:.1f} kcal",
+                    )
+                    if revised_category:
+                        st.success(
+                            "Estimated category after applying the listed changes: "
+                            f"**{revised_category}**"
+                        )
+                else:
+                    st.info(
+                        "Specific lower-calorie substitutions were found. Add amounts "
+                        "such as `30 g mayonnaise` or `150 g white rice` to calculate "
+                        "the approximate calories that could be saved."
+                    )
+
+                st.caption(result.get("calorie_reduction_note", ""))
+            else:
+                st.write(
+                    "No matching calorie-reduction rule was found for the entered ingredients."
+                )
+
             st.info(result["disclaimer"])
 
         except ValueError as error:

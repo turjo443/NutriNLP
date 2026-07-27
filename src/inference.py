@@ -29,7 +29,11 @@ class NutriNLPInference:
         self.classifier = joblib.load(classifier_path)
         self.nutrition = joblib.load(nutrition_path)
         self.metadata = load_json(metadata_path)
-        self.engine = RecommendationEngine(self.root / "config" / "ingredient_substitutions.json")
+        ingredient_profiles = getattr(self.nutrition, "ingredient_profiles", {})
+        self.engine = RecommendationEngine(
+            self.root / "config" / "ingredient_substitutions.json",
+            ingredient_profiles=ingredient_profiles,
+        )
         aliases_path = self.root / "config" / "inference_aliases.json"
         self.inference_aliases = load_json(aliases_path) if aliases_path.exists() else {}
         self.class_names = {int(k): v for k, v in self.metadata["class_names"].items()}
@@ -165,8 +169,24 @@ class NutriNLPInference:
                 "The independent category classifier and numerical nutrition estimator disagree. This is expected in some cases; use the category and wide uncertainty range as separate evidence."
             )
 
-        recommendations = self.engine.recommend(text, estimated, class_name)
-        dataset_ingredients = estimator_ingredients or self._detect_dataset_ingredients(text)
+        dataset_ingredients = estimator_ingredients or self._detect_dataset_ingredients(model_text)
+        recommendations = self.engine.recommend(
+            text,
+            estimated,
+            class_name,
+            explicit_quantities=explicit_quantities,
+            detected_ingredients=dataset_ingredients,
+        )
+
+        revised_calories = recommendations.get("estimated_revised_calories")
+        revised_category = None
+        if revised_calories is not None:
+            if revised_calories <= float(thresholds["low_threshold_kcal"]):
+                revised_category = "Low Calorie"
+            elif revised_calories <= float(thresholds["high_threshold_kcal"]):
+                revised_category = "Medium Calorie"
+            else:
+                revised_category = "High Calorie"
         return {
             "input_text": str(text),
             "normalized_text": normalized,
@@ -187,6 +207,11 @@ class NutriNLPInference:
             "nutrition_estimate_category": estimated_category,
             "healthier_alternatives": recommendations["substitutions"],
             "dietary_suggestions": recommendations["dietary_suggestions"],
+            "calorie_reduction_plan": recommendations["calorie_reduction_plan"],
+            "estimated_total_calorie_saving": recommendations["estimated_total_calorie_saving"],
+            "estimated_revised_calories": revised_calories,
+            "estimated_revised_category": revised_category,
+            "calorie_reduction_note": recommendations["calorie_reduction_note"],
             "warnings": warnings,
             "disclaimer": "Educational estimates only; not professional medical or dietetic advice.",
         }
